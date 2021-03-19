@@ -68,20 +68,15 @@ namespace BankomatApp
             decimal totalRest = sum;
             while (totalRest > 0)
             {
-                for (int i = startPos; i>=0; i--)
+                for (int i = startPos; i >= 0; i--)
                 {
                     decimal nom = nominals[i];
-                    if (nom <= totalRest)
+                    if (nom <= totalRest && bankList[nom] > 0)
                     {
                         if (result.ContainsKey(nom))
                             result[nom]++;
                         else result.Add(nom, 1);
                         bankList[nom]--;
-                        if (bankList[nom] == 0)
-                        {
-                            bankList.Remove(nom);
-                            nominals.Remove(nom);
-                        }
                         totalRest -= nom;
                         break;
 
